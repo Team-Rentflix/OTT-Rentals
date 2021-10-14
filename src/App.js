@@ -21,6 +21,9 @@ function App() {
                 <PublicRoute exact path='/login' restricted={true} component={Login} />
                 <PrivateRoute exact path='/newpost' component={NewPost} />
                 <PrivateRoute exact path='/logout' component={Logout} />
+                <Route>
+                  <Redirect to='/home' />
+                </Route>
               </Switch>
             </Suspense>
           </div>
