@@ -1,0 +1,18 @@
+nav ul li{
+    list-style: none;
+}
+
+nav ul li .nav-icons{
+    width: 35px;
+    height: inherit;
+    margin: 0 10px;
+}
+
+@media screen and (max-width: 759px){
+    .detach-nav{
+        position: fixed;
+        bottom: 0;
+        padding: 10px;
+        background-color: var(--bg-color);
+    }
+}
