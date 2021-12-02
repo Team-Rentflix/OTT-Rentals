@@ -1,5 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato&display=swap');
+
 :root{
   --bg-color: #1c1c25 !important;
+  --bg-ottred:linear-gradient(to bottom right, #dc3545, #C50707) !important;
+}
+
+.font-bebas{
+  font-family: 'Bebas Neue', cursive !important;
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 10px;
 }
 
 
@@ -44,4 +53,11 @@ code {
     border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: grey;
+}
+
+@media screen and (max-width: 805px)
+{
+  #rentflix-logo{
+    height: 70px !important;
+  }
 }

@@ -15,8 +15,10 @@ function App() {
       <AuthProvider>
         <Router>
           <Navbar />
-          <div className='container' style={{ paddingTop: '15px' }}>
-            <Suspense fallback={<></>}>
+          <div className='container' style={{
+            paddingBottom:'90px'
+          }}>
+            <Suspense fallback={<>Loading</>}>
               <Switch>
                 <PublicRoute exact path='/login' restricted={true} component={Login} />
                 <PrivateRoute exact path='/newpost' component={NewPost} />

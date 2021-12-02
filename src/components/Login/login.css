@@ -19,7 +19,7 @@
     height: 460px;
     transform-style: preserve-3d;
     perspective: 800px;
-    margin: 30px;
+    margin: 10px;
     background-color: transparent !important;
 }
 .card .face
@@ -162,7 +162,7 @@
     }
     .card
     {
-        height: 659px;
+        height: 690px;
         width: 431px;
     }
     

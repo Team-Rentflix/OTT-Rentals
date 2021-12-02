@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react'
-import Register from '../Images/register.png'
-import LoginPng from '../Images/login.png'
+import React, { useRef } from 'react'
+import SecureLogin from '../Images/SecureLogin.svg'
+import TwoFactorAuthentication from '../Images/TwoFactorAuthentication.svg'
 const LoginForm = () => {
     const front = useRef();
     const back = useRef();
@@ -23,6 +23,7 @@ const LoginForm = () => {
                 <div className="card">
                     <div ref={front} className="face front">
                         <div className="left-face">
+                            <img alt='' src={SecureLogin} className='img-fluid' />
                             <p>New Here?</p>
                             <button type="button" onClick={() => {
                                 front.current.style.transform = "rotateY(180deg)";
@@ -30,7 +31,7 @@ const LoginForm = () => {
                             }} className="btn login">Register</button>
                         </div>
                         <div className="right-face">
-                            <img src={LoginPng} style={{ width: '400px', margin: '5px' }} alt="Login" />
+                            <p className='font-bebas display-3'>Login</p>
                             <form id="login-form" onSubmit={(e) => LoginFunc(e)}>
                                 <input type="text" className="input-field" placeholder="User ID" required />
                                 <input type="password" className="input-field" placeholder="Enter Password" required />
@@ -42,6 +43,7 @@ const LoginForm = () => {
                     </div>
                     <div ref={back} className="face back">
                         <div className="left-face">
+                            <img alt='' src={TwoFactorAuthentication} className='img-fluid' />
                             <p>Already Registered?</p>
                             <button type="button" onClick={() => {
                                 back.current.style.transform = "rotateY(180deg)";
@@ -49,7 +51,7 @@ const LoginForm = () => {
                             }} className="btn signup">Login</button>
                         </div>
                         <div className="right-face">
-                            <img src={Register} style={{ width: '425px', margin: '5px' }} alt="Login" />
+                            <p className='font-bebas display-3'>Register</p>
                             <form id="login-form" action="">
                                 <input type="text" className="input-field" placeholder="User ID" required />
                                 <input type="email" className="input-field" placeholder="Email ID" required />
