@@ -8,7 +8,7 @@ const PublicHome = lazy(() => import('./PublicHome'));
 
 const Home = () => {
 
-    const currentUser = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
 
     return (
         <>
