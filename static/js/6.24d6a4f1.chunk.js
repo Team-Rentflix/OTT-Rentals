@@ -1,2 +1,0 @@
-(this["webpackJsonpott-rentals"]=this["webpackJsonpott-rentals"]||[]).push([[6],{53:function(t,n,o){"use strict";o.r(n);n.default=function(){return localStorage.clear(),window.location.reload(),null}}}]);
-//# sourceMappingURL=6.24d6a4f1.chunk.js.map

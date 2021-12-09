@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Home/home.css"],"names":[],"mappings":"AAAA,mBACI,mBACJ,CAEA,yBACI,6BAAsB,CAAtB,qBACJ","file":"5.c46d2e69.chunk.css","sourcesContent":[".home-platform-img{\r\n    transition: 0.5s ease;\r\n}\r\n\r\n.home-platform-img:hover{\r\n    transform: scale(1.05);\r\n}"]}
