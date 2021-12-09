@@ -8,7 +8,11 @@ const LoginForm = () => {
     const LoginFunc = (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
-        localStorage.ORIsLoggedIn = JSON.stringify(true);
+        let username = fd.get('username');
+        let password = fd.get('password')
+        if (username === 'admin' && password === 'admin') {
+            localStorage.ORIsLoggedIn = JSON.stringify(true);
+        }
         window.location.reload();
     }
 
@@ -33,8 +37,8 @@ const LoginForm = () => {
                         <div className="right-face">
                             <p className='font-bebas display-3'>Login</p>
                             <form id="login-form" onSubmit={(e) => LoginFunc(e)}>
-                                <input type="text" className="input-field" placeholder="User ID" required />
-                                <input type="password" className="input-field" placeholder="Enter Password" required />
+                                <input name='username' type="text" className="input-field" placeholder="User ID" required />
+                                <input name='password' type="password" className="input-field" placeholder="Enter Password" required />
                                 <input type="checkbox" id="login-checkbox" className="check-box" /><label
                                     for="login-checkbox">Remember Password</label>
                                 <button type="submit" className="btn">Login</button>

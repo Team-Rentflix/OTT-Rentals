@@ -1,0 +1,7 @@
+.home-platform-img{
+    transition: 0.5s ease;
+}
+
+.home-platform-img:hover{
+    transform: scale(1.05);
+}
