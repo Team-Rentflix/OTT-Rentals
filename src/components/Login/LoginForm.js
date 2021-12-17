@@ -1,23 +1,44 @@
 import React, { useRef } from 'react'
 import SecureLogin from '../Images/SecureLogin.svg'
 import TwoFactorAuthentication from '../Images/TwoFactorAuthentication.svg'
+import axios from 'axios'
+
 const LoginForm = () => {
     const front = useRef();
     const back = useRef();
-
+    const rePass = useRef();
+    const messageBox = useRef();
     const LoginFunc = (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
         let username = fd.get('username');
-        let password = fd.get('password')
-        if (username === 'admin' && password === 'admin') {
-            localStorage.ORIsLoggedIn = JSON.stringify(true);
-        }
-        window.location.reload();
+        let password = fd.get('password');
+        fetch('http://localhost:4000/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Object.fromEntries(fd))
+        })
+
     }
 
     const RegistrationFunc = (e) => {
-
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        let password = fd.get('password');
+        if (password !== rePass.current.value) {
+            messageBox.current.innerHTML = 'Password do not match'
+            setTimeout(() => messageBox.current.innerHTML = '', 3000);
+            return
+        }
+        fetch('http://localhost:4000/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Object.fromEntries(fd))
+        })
     }
 
 
@@ -56,13 +77,15 @@ const LoginForm = () => {
                         </div>
                         <div className="right-face">
                             <p className='font-bebas display-3'>Register</p>
-                            <form id="login-form" action="">
-                                <input type="text" className="input-field" placeholder="User ID" required />
-                                <input type="email" className="input-field" placeholder="Email ID" required />
-                                <input type="number" className="input-field" placeholder="Phone Number" required />
-                                <input type="password" className="input-field" placeholder="Enter Password" required />
+                            <form id="login-form" onSubmit={(e) => RegistrationFunc(e)}>
+                                <input type="text" className="input-field" placeholder="User Name" name='username' required />
+                                <input type="email" className="input-field" placeholder="Email" name='email' required />
+                                <input type="tel" className="input-field" placeholder="Phone Number" pattern="[0-9]{10}" name='phonenumber' required />
+                                <input type="password" className="input-field" placeholder="Enter Password" name='password' required />
+                                <input type="password" className="input-field" placeholder="Enter Password Again" ref={rePass} required />
                                 <input type="checkbox" name="reg-checkbox" id="reg-checkbox" className="check-box" required /><label
                                     for="reg-checkbox">I agree to terms and conditions</label>
+                                <p ref={messageBox} className='text-danger'></p>
                                 <button type="submit" className="btn">Register</button>
                             </form>
                         </div>
