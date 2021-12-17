@@ -22,7 +22,7 @@ app.post('/api/login', async (req, res) => {
         res.json({ status: false, error: 'No User Found' });
         return
     }
-    const isPassValid = await bcrypt.compare(req.body.password,user.password);
+    const isPassValid = await bcrypt.compare(req.body.password, user.password);
     if (isPassValid) {
         const token = await jwt.sign({
             name: user.name,
@@ -33,10 +33,25 @@ app.post('/api/login', async (req, res) => {
         return res.json({ status: true, user: token })
     }
     else {
-        return res.json({ status: false, user: false, error: 'Password Not Matched' })
+        return res.json({ status: false, user: false, error: 'Password do not match' })
     }
 
 })
+
+app.get('/api/auth', async (req, res) => {
+    const token = req.headers['x-access-token'];
+    try {
+        const decoded_token = jwt.verify(token, 'rentflix111110');
+        const username = decoded_token.name;
+        const user = await User.findOne({ name: username });
+        if (user) {
+            return res.json({ status: true })
+        }
+    } catch (err) {
+        return res.json({ status: false, error: 'invalid token' })
+    }
+})
+
 
 app.post('/api/register', async (req, res) => {
     console.log(req.body);
@@ -50,8 +65,7 @@ app.post('/api/register', async (req, res) => {
         })
         res.json({ status: true })
     } catch (err) {
-        console.log(err)
-        res.json({ status: false, error: err._message })
+        res.json({ status: false, error: Object.keys(err.keyValue)[0] })
     }
 })
 

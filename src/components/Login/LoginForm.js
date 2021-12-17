@@ -1,24 +1,21 @@
 import React, { useRef } from 'react'
 import SecureLogin from '../Images/SecureLogin.svg'
 import TwoFactorAuthentication from '../Images/TwoFactorAuthentication.svg'
-import axios from 'axios'
+import APICall from '../APICall'
 
 const LoginForm = () => {
     const front = useRef();
     const back = useRef();
     const rePass = useRef();
     const messageBox = useRef();
+    const messageBox1 = useRef();
+
+
     const LoginFunc = async (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
-        const response = await fetch('http://localhost:4000/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(Object.fromEntries(fd))
-        })
-        const data = await response.json();
+
+        const data = await APICall('/api/login', 'POST', Object.fromEntries(fd));
 
 
         if (data.user && data.status) {
@@ -28,13 +25,13 @@ const LoginForm = () => {
             window.location.reload()
         }
         else {
-            messageBox.current.innerHTML = data.error;
-            setTimeout(() => messageBox.current.innerHTML = '', 3000);
+            messageBox1.current.innerHTML = data.error;
+            setTimeout(() => messageBox1.current.innerHTML = '', 3000);
         }
 
     }
 
-    const RegistrationFunc = (e) => {
+    const RegistrationFunc = async (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
         let password = fd.get('password');
@@ -43,13 +40,16 @@ const LoginForm = () => {
             setTimeout(() => messageBox.current.innerHTML = '', 3000);
             return
         }
-        fetch('http://localhost:4000/api/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(Object.fromEntries(fd))
-        })
+
+        const data = await APICall('/api/register', 'POST', Object.fromEntries(fd));
+        if (data.status) {
+            back.current.style.transform = "rotateY(180deg)";
+            front.current.style.transform = "rotateY(0deg)";
+        }
+        else {
+            messageBox.current.innerHTML = `${data.error} already exist`
+            setTimeout(() => messageBox.current.innerHTML = '', 3000);
+        }
     }
 
 
@@ -73,6 +73,7 @@ const LoginForm = () => {
                                 <input name='password' type="password" className="input-field" placeholder="Enter Password" required />
                                 <input type="checkbox" id="login-checkbox" className="check-box" /><label
                                     for="login-checkbox">Remember Password</label>
+                                <p ref={messageBox1} className='text-danger'></p>
                                 <button type="submit" className="btn">Login</button>
                             </form>
                         </div>
@@ -96,7 +97,7 @@ const LoginForm = () => {
                                 <input type="password" className="input-field" placeholder="Enter Password Again" ref={rePass} required />
                                 <input type="checkbox" name="reg-checkbox" id="reg-checkbox" className="check-box" required /><label
                                     for="reg-checkbox">I agree to terms and conditions</label>
-                                <p ref={messageBox} className='text-danger'></p>
+                                <p ref={messageBox} className='text-danger text-capitalize'></p>
                                 <button type="submit" className="btn">Register</button>
                             </form>
                         </div>

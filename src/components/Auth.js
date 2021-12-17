@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import PropagateLoader from 'react-spinners/PropagateLoader'
+import APICall from "./APICall";
+
 export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(false);
   const [pending, setPending] = useState(true);
 
-
   useEffect(() => {
+
+    const AuthenticateLogin = async () => {
+      const data = await APICall('/api/auth', 'GET');
+      if (data.status) {
+        setCurrentUser(true);
+      }
+    }
+
     if (localStorage.ORIsLoggedIn === 'true') {
-      setCurrentUser(true);
+      AuthenticateLogin();
     }
     else {
       setCurrentUser(false);
