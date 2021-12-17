@@ -8,18 +8,29 @@ const LoginForm = () => {
     const back = useRef();
     const rePass = useRef();
     const messageBox = useRef();
-    const LoginFunc = (e) => {
+    const LoginFunc = async (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
-        let username = fd.get('username');
-        let password = fd.get('password');
-        fetch('http://localhost:4000/api/login', {
+        const response = await fetch('http://localhost:4000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(Object.fromEntries(fd))
         })
+        const data = await response.json();
+
+
+        if (data.user && data.status) {
+            console.log(data)
+            localStorage.ORIsLoggedIn = true;
+            localStorage.token = data.user;
+            window.location.reload()
+        }
+        else {
+            messageBox.current.innerHTML = data.error;
+            setTimeout(() => messageBox.current.innerHTML = '', 3000);
+        }
 
     }
 

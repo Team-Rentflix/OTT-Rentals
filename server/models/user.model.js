@@ -10,6 +10,6 @@ const User = new mongoose.Schema(
     { collection: 'UserData' }
 )
 
-const model = mongoose.model('Rentflix', User);
+const model = mongoose.model('UserData', User);
 
 module.exports = model
