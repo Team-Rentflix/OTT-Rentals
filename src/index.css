@@ -11,6 +11,9 @@
   letter-spacing: 10px;
 }
 
+.bg-rfred{
+  background-color: var(--bg-ottred) !important;
+}
 
 body {
   margin: 0;

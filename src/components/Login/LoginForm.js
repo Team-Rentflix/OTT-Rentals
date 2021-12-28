@@ -22,6 +22,7 @@ const LoginForm = () => {
             console.log(data)
             localStorage.ORIsLoggedIn = true;
             localStorage.token = data.user;
+            localStorage.username = data.username;
             window.location.reload()
         }
         else {

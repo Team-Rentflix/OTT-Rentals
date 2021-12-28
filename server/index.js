@@ -13,6 +13,20 @@ mongoose.connect('mongodb://localhost:27017/rentflix', { useNewUrlParser: true, 
     console.log('connection successful')
 }).catch(err => console.log(err));
 
+
+const verifyUser = async (token) => {
+    try {
+        const decoded_token = jwt.verify(token, 'rentflix111110');
+        const username = decoded_token.name;
+        const user = await User.findOne({ name: username });
+        if (user) {
+            return { status: true, user: user }
+        }
+    } catch (err) {
+        return { status: false }
+    }
+}
+
 app.post('/api/login', async (req, res) => {
     console.log(req.body);
     const user = await User.findOne({
@@ -30,7 +44,7 @@ app.post('/api/login', async (req, res) => {
             phoneNumber: user.phoneNumber
         }, 'rentflix111110')
 
-        return res.json({ status: true, user: token })
+        return res.json({ status: true, user: token, username: user.name })
     }
     else {
         return res.json({ status: false, user: false, error: 'Password do not match' })
@@ -39,22 +53,19 @@ app.post('/api/login', async (req, res) => {
 })
 
 app.get('/api/auth', async (req, res) => {
-    const token = req.headers['x-access-token'];
-    try {
-        const decoded_token = jwt.verify(token, 'rentflix111110');
-        const username = decoded_token.name;
-        const user = await User.findOne({ name: username });
-        if (user) {
-            return res.json({ status: true })
-        }
-    } catch (err) {
+
+    const Vdata = await verifyUser(req.headers['x-access-token'])
+    console.log(await User.findOne({ _id: '61bc82803861aef445ec92bb'}))
+    if (Vdata.status) {
+        return res.json({ status: true, username: Vdata.user.name })
+    }
+    else {
         return res.json({ status: false, error: 'invalid token' })
     }
 })
 
 
 app.post('/api/register', async (req, res) => {
-    console.log(req.body);
     try {
         const newPassword = await bcrypt.hash(req.body.password, 10)
         await User.create({
@@ -67,6 +78,29 @@ app.post('/api/register', async (req, res) => {
     } catch (err) {
         res.json({ status: false, error: Object.keys(err.keyValue)[0] })
     }
+})
+
+app.get('/api/account', async (req, res) => {
+    const Vdata = await verifyUser(req.headers['x-access-token']);
+    const user = Vdata.user;
+
+    if (Vdata.status) {
+        return res.json({
+            status: true,
+            name: user.name,
+            email: user.email,
+            phoneNumber: user.phoneNumber
+        })
+    }
+    else {
+        return res.json({ status: false, error: 'Some Error Occured' })
+    }
+})
+
+app.post('/api/newpost', async (req, res) => {
+    const Vdata = await verifyUser(req.headers['x-access-token']);
+    const user = Vdata.user;
+    console.log(req.body)
 })
 
 app.listen(port, () => console.log(`Server running on port:${port}`))

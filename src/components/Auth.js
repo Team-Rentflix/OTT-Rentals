@@ -14,10 +14,15 @@ export const AuthProvider = ({ children }) => {
       const data = await APICall('/api/auth', 'GET');
       if (data.status) {
         setCurrentUser(true);
+        localStorage.username = data.username;
+      }
+      else {
+        setCurrentUser(false);
       }
     }
 
     if (localStorage.ORIsLoggedIn === 'true') {
+      setCurrentUser(true)
       AuthenticateLogin();
     }
     else {
@@ -44,5 +49,5 @@ export const AuthProvider = ({ children }) => {
     >
       {children}
     </AuthContext.Provider>
-  );
+  )
 };

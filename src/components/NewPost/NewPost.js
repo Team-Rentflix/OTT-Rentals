@@ -1,21 +1,30 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Form } from 'react-bootstrap'
 import VideoGamesSvg from '../Images/VideoGames.svg'
 import { Helmet } from 'react-helmet'
+import APICall from '../APICall'
 const NewPost = () => {
 
     const platformList = ['Netflix', 'Amazon Prime', 'Hotstar']
+    const AmountRef = useRef();
+
 
     const NewPostFunc = (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
+        const data = APICall('/api/newpost', 'POST', Object.fromEntries(fd))
+
+    }
+
+    const UpdateAmount = (e) => {
+        AmountRef.current.value = parseInt(e) * 15;
     }
 
     return (
         <>
-        <Helmet>
-            <title>New Post</title>
-        </Helmet>
+            <Helmet>
+                <title>New Post</title>
+            </Helmet>
             <div className='row'>
                 <div className='col-md-6 pe-md-4 p-4'>
                     <Form onSubmit={(e) => { NewPostFunc(e) }}>
@@ -29,16 +38,19 @@ const NewPost = () => {
                                 </div>
                             </div>
                             <div className="col-md-8 m-0 p-2">
-                                <div className="form-floating">
-                                    <input maxlength="500" name="subsciption-type" type="text" className="form-control" placeholder="Subsciption Type" />
-                                    <label>Subscription Type</label>
+                                <div className='form-floating'>
+                                    <select className="form-select" id='subscription-type' name="subscription_type">
+                                        <option value="booknow">Book Now</option>
+                                        <option value="prebook">Pre-Book</option>
+                                    </select>
+                                    <label>Subsciption Type</label>
                                 </div>
                             </div>
                             <div className="col-md-4 m-0 p-1">
                                 <div className="row mx-auto">
                                     <div className="col m-0 p-1">
                                         <div className="form-floating">
-                                            <input name="time" id='time_period' type="number" min="0" className="form-control" placeholder="Time Period" />
+                                            <input onChange={e => UpdateAmount(e.target.value)} name="time_period" id='time_period' type="number" min="1" max='15' className="form-control" placeholder="Time Period" />
                                             <label>Time Period</label>
                                         </div>
                                     </div>
@@ -47,16 +59,17 @@ const NewPost = () => {
                             <div className="col-md-8 m-0 p-1">
                                 <div className="row mx-auto">
                                     <div className="col m-0 p-1">
-                                        <div className="form-floating">
-                                            <input name="amount" type="number" min="0" className="form-control" placeholder="amount" />
-                                            <label>Amount</label>
+                                        <div className='form-floating'>
+                                            <input type='date' name='end_date' className='form-control' />
+                                            <label>End Date</label>
                                         </div>
                                     </div>
+
                                     <div className="col m-0 p-1">
-                                        <select name="budget_code" className="form-select py-3">
-                                            <option value="INR" selected="">INR</option>
-                                            <option value="USD">USD $</option>
-                                        </select>
+                                        <div className="form-floating">
+                                            <input name="amount" ref={AmountRef} type="number" min="0" className="form-control" placeholder="amount" />
+                                            <label>Amount</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
