@@ -23,6 +23,7 @@ const verifyUser = async (token) => {
         if (user) {
             return { status: true, user: user }
         }
+        else { return { status: false } }
     } catch (err) {
         return { status: false }
     }
@@ -56,7 +57,7 @@ app.post('/api/login', async (req, res) => {
 app.get('/api/auth', async (req, res) => {
 
     const Vdata = await verifyUser(req.headers['x-access-token'])
-    console.log(await User.findOne({ _id: '61bc82803861aef445ec92bb'}))
+    console.log(await User.findOne({ _id: '61bc82803861aef445ec92bb' }))
     if (Vdata.status) {
         return res.json({ status: true, username: Vdata.user.name })
     }
