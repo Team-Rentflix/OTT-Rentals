@@ -5,11 +5,12 @@ const mongoose = require('mongoose')
 const User = require('./models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const port = process.env.PORT | 4000;
+const port = process.env.PORT || 4000;
 
 app.use(cors())
 app.use(express.json())
-mongoose.connect('mongodb://localhost:27017/rentflix', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+//mongodb://localhost:27017/rentflix
+mongoose.connect("mongodb+srv://abhinavginti:eojay8VdTDhp96yP@cluster0.gbpfp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log('connection successful')
 }).catch(err => console.log(err));
 
@@ -22,6 +23,7 @@ const verifyUser = async (token) => {
         if (user) {
             return { status: true, user: user }
         }
+        else { return { status: false } }
     } catch (err) {
         return { status: false }
     }
@@ -55,7 +57,7 @@ app.post('/api/login', async (req, res) => {
 app.get('/api/auth', async (req, res) => {
 
     const Vdata = await verifyUser(req.headers['x-access-token'])
-    console.log(await User.findOne({ _id: '61bc82803861aef445ec92bb'}))
+    console.log(await User.findOne({ _id: '61bc82803861aef445ec92bb' }))
     if (Vdata.status) {
         return res.json({ status: true, username: Vdata.user.name })
     }
