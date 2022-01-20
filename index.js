@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const User = require('./models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const port = process.env.PORT | 4000;
+const port = process.env.PORT || 4000;
 
 app.use(cors())
 app.use(express.json())
