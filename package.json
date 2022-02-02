@@ -1,6 +1,6 @@
 {
   "homepage": ".",
-  "proxy": "https://rentflix-server.herokuapp.com/",
+  "proxy": "https://rentflix-server.herokuapp.com",
   "name": "ott-rentals",
   "version": "0.1.0",
   "private": true,
