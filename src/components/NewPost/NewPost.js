@@ -12,8 +12,15 @@ const NewPost = () => {
     const NewPostFunc = (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
-        const data = APICall('/api/newpost', 'POST', Object.fromEntries(fd))
-
+        // const data = APICall('/api/newpost', 'POST', Object.fromEntries(fd))
+        try{
+            const data = JSON.parse(localStorage.posts);
+            localStorage.posts = JSON.stringify([...data,Object.fromEntries(fd)])
+        }catch(err){
+            console.log(err)
+            localStorage.posts = JSON.stringify([Object.fromEntries(fd)])
+        }
+        window.alert('Post Added')
     }
 
     const UpdateAmount = (e) => {
@@ -75,7 +82,7 @@ const NewPost = () => {
                             </div>
                             <div className="col-md-12 m-0 p-2">
                                 <div className="form-floating">
-                                    <textarea maxlength="1000" name="description" className="form-control py-5"></textarea>
+                                    <textarea maxLength="1000" name="description" rows='4' className="form-control"></textarea>
                                     <label>Description</label>
                                 </div>
                             </div>
