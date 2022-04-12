@@ -1,31 +1,43 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import VideoGamesSvg from '../Images/VideoGames.svg'
 import { Helmet } from 'react-helmet'
 import APICall from '../APICall'
+import useUpdateEffect from '../../utils/useUpdateEffect'
 const NewPost = () => {
 
     const platformList = ['Netflix', 'Amazon Prime', 'Hotstar']
     const AmountRef = useRef();
+    const [rate, setRate] = useState(0)
+    const msg = useRef()
 
 
-    const NewPostFunc = (e) => {
+    const NewPostFunc = async (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
-        // const data = APICall('/api/newpost', 'POST', Object.fromEntries(fd))
-        try{
-            const data = JSON.parse(localStorage.posts);
-            localStorage.posts = JSON.stringify([...data,Object.fromEntries(fd)])
-        }catch(err){
-            console.log(err)
-            localStorage.posts = JSON.stringify([Object.fromEntries(fd)])
+        const data = await APICall('/api/post/create', 'POST', Object.fromEntries(fd))
+        if (data.status) {
+            msg.current.innerHTML = 'Post Added Successfully'
+        } else {
+            msg.current.innerHTML = data.error.message || data.error;
         }
-        window.alert('Post Added')
+        setTimeout(() => msg.current.innerHTML = '', 3000);
+        // try {
+        //     const data = JSON.parse(localStorage.posts);
+        //     localStorage.posts = JSON.stringify([...data, Object.fromEntries(fd)])
+        // } catch (err) {
+        //     console.log(err)
+        //     localStorage.posts = JSON.stringify([Object.fromEntries(fd)])
+        // }
+        // window.alert('Post Added')
     }
 
     const UpdateAmount = (e) => {
-        AmountRef.current.value = parseInt(e) * 15;
+        AmountRef.current.value = parseInt(e) * rate;
     }
+
+    useUpdateEffect(() => UpdateAmount(document.getElementById('time_period').value), [rate])
+
 
     return (
         <>
@@ -44,7 +56,7 @@ const NewPost = () => {
                                     <label>OTT Platform</label>
                                 </div>
                             </div>
-                            <div className="col-md-8 m-0 p-2">
+                            <div className="col-md-4 m-0 p-2">
                                 <div className='form-floating'>
                                     <select className="form-select" id='subscription-type' name="subscription_type">
                                         <option value="booknow">Book Now</option>
@@ -53,29 +65,35 @@ const NewPost = () => {
                                     <label>Subsciption Type</label>
                                 </div>
                             </div>
+                            <div className="col-md-4 m-0 p-2">
+                                <div className='form-floating'>
+                                    <input onChange={e => setRate(e.target.value)} type='number' name='rate' className='form-control' placeholder='Amount/Day' />
+                                    <label>Amount/Day(in ₹)</label>
+                                </div>
+                            </div>
                             <div className="col-md-4 m-0 p-1">
                                 <div className="row mx-auto">
                                     <div className="col m-0 p-1">
                                         <div className="form-floating">
                                             <input onChange={e => UpdateAmount(e.target.value)} name="time_period" id='time_period' type="number" min="1" max='15' className="form-control" placeholder="Time Period" />
-                                            <label>Time Period</label>
+                                            <label>Time Period(In Days)</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-md-8 m-0 p-1">
                                 <div className="row mx-auto">
-                                    <div className="col m-0 p-1">
+                                    <div className="col m-0 p-1 pe-2">
                                         <div className='form-floating'>
                                             <input type='date' name='end_date' className='form-control' />
                                             <label>End Date</label>
                                         </div>
                                     </div>
 
-                                    <div className="col m-0 p-1">
+                                    <div className="col m-0 p-1 ps-2">
                                         <div className="form-floating">
-                                            <input name="amount" ref={AmountRef} type="number" min="0" className="form-control" placeholder="amount" />
-                                            <label>Amount</label>
+                                            <input ref={AmountRef} type="number" min="0" className="form-control" placeholder="Total Amount" />
+                                            <label>Total Amount</label>
                                         </div>
                                     </div>
                                 </div>
@@ -86,9 +104,12 @@ const NewPost = () => {
                                     <label>Description</label>
                                 </div>
                             </div>
+                            <div className='text-danger small fst-italic'>
+                                <p className='mb-1'>* End Date - Your offer will expire on this date</p>
+                                <p>* Total Amount - This amount can vary depending on which day your offer is claimed</p>
+                            </div>
                             <div className="col-md-12 m-0 p-2">
-                                <span className="d-block" id="result-box">
-                                </span>
+                                <p ref={msg} className='text-danger text-capitalize'></p>
                                 <button type="submit" className="btn btn-lg btn-danger text-light shadow-lg px-0 w-100 rounded-3 fw-bold">POST NOW</button>
                             </div>
                         </div>
@@ -97,7 +118,7 @@ const NewPost = () => {
                 <div className='col-md-6'>
                     <img alt='' src={VideoGamesSvg} className='img-fluid' />
                 </div>
-            </div>
+            </div >
         </>
     )
 }

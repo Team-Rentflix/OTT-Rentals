@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 import { AuthContext } from '../Auth'
 import './home.css'
 import PostCard from '../NewPost/PostCard'
+import APICall from '../APICall'
 
 const PrivateHome = lazy(() => import('./PrivateHome'));
 const PublicHome = lazy(() => import('./PublicHome'));
@@ -11,11 +12,13 @@ const Home = () => {
 
     const { currentUser } = useContext(AuthContext);
     const [posts, setPosts] = useState(null)
+
+    const getPosts = async () => {
+        const data = await APICall('/api/posts', 'GET')
+        if (data.status) setPosts(data.posts)
+    }
     useEffect(() => {
-        try {
-            const data = JSON.parse(localStorage.posts)
-            setPosts(data.map((post, index) => <PostCard key={post.subsciption + index} post={post} />))
-        } catch (err) { console.log(err) }
+        getPosts();
     }, [])
 
     return (
@@ -24,8 +27,8 @@ const Home = () => {
                 <title>RentFlix - Home</title>
             </Helmet>
             {currentUser ? <PrivateHome /> : <PublicHome />}
-            <div className='row mt-5'>
-                {posts}
+            <div className='row mt-5 justify-content-center'>
+                {posts && posts.map((post,index) => <PostCard key={post._id + index} post={post}/>)}
             </div>
         </>
     )

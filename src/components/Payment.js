@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { BsBagCheckFill } from 'react-icons/bs'
+import { AuthContext } from './Auth'
 
-const Payment = ({amount}) => {
+const Payment = ({ amount, user_id }) => {
+
+    const { currentUser } = useContext(AuthContext)
+
     const loadScript = (src) => {
         return new Promise((resolve) => {
             const script = document.createElement("script");
@@ -26,8 +30,8 @@ const Payment = ({amount}) => {
             return;
         }
         const options = {
-            key : 'rzp_test_lCStAJm50TlXds',
-            amount : amount * 100,
+            key: 'rzp_test_lCStAJm50TlXds',
+            amount: amount * 100,
             theme: {
                 color: "#5EA8DD",
             }
@@ -37,7 +41,7 @@ const Payment = ({amount}) => {
     }
 
     return (
-        <button onClick={displayRazorpay} className='btn fs-5 px-0'><BsBagCheckFill /><span className='small px-1 fst-italic'>Buy Now</span></button>
+        <button disabled={!currentUser || user_id == localStorage.user_id} onClick={displayRazorpay} className='btn fs-5 px-0'><BsBagCheckFill /><span className='small px-1 fst-italic'>Buy Now</span></button>
     )
 }
 

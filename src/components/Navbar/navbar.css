@@ -14,7 +14,7 @@ nav ul li .nav-icons{
     transition: 0.5s ease;
 }
 
-@media screen and (max-width: 759px){
+@media screen and (max-width: 940px){
     .detach-nav{
         position: fixed;
         bottom: 0;

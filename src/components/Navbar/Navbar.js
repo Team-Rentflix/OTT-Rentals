@@ -26,7 +26,7 @@ const Navbar = () => {
                 {currentUser ? <div className='col'>
                     <Link to='/account' className='d-flex flex-row align-items-center'>
                         <p className='fw-bold me-2 d-none d-md-block text-light px-2 mb-0'>{localStorage.username}</p>
-                        <img src={`https://ui-avatars.com/api/?name=${localStorage.username}&size=40&background=C50707&color=fff`} className='rounded-circle' alt='user image' />
+                        <img src={`https://ui-avatars.com/api/?name=${localStorage.username}&size=40&background=C50707&color=fff`} className='rounded-circle' alt='user_image' />
                     </Link>
                 </div> : ''}
             </nav>
