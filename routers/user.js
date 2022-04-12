@@ -40,8 +40,7 @@ router.post("/api/login", async (req, res) => {
       },
       process.env.SECRET
     );
-
-    return res.json({ status: true, user: token, username: user.name });
+    return res.json({ status: true, user: token, username: user.name, user_id: user._id });
   } else {
     return res.json({
       status: false,
