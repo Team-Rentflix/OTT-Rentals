@@ -28,12 +28,17 @@ router.get(
   "/api/posts",
   async (req, res, next) => {
     let posts = await Post.find({ active: true });
-    posts.forEach(async (post) => {
-      if (post.end_date <= new Date()) {
-        await Post.findByIdAndUpdate(post._id, { active: false });
-      }
-    });
-    next();
+    try {
+      posts.forEach(async (post) => {
+        if (post.end_date <= new Date()) {
+          await Post.findByIdAndUpdate(post._id, { active: false });
+        }
+      });
+      setTimeout(next, 0);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({ status: false, error: err });
+    }
   },
   async (req, res) => {
     try {
