@@ -19,6 +19,15 @@ user.pre("save", async function (next) {
   next();
 });
 
+user.methods.toJSON = function () {
+  const user = this;
+  userObject = user.toObject();
+
+  delete userObject.password;
+
+  return userObject;
+};
+
 const model = mongoose.model("UserData", user);
 
 module.exports = model;

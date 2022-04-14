@@ -40,9 +40,14 @@ router.post("/api/login", async (req, res) => {
       },
       process.env.SECRET
     );
-    return res.json({ status: true, user: token, username: user.name, user_id: user._id });
+    return res.send({
+      status: true,
+      user: token,
+      username: user.name,
+      user_id: user._id,
+    });
   } else {
-    return res.json({
+    return res.send({
       status: false,
       user: false,
       error: "Password do not match",
