@@ -27,8 +27,8 @@ router.post("/api/post/create", auth, async (req, res) => {
 router.get(
   "/api/posts",
   async (req, res, next) => {
-    let posts = await Post.find({ active: true });
     try {
+      let posts = await Post.find({ active: true });
       posts.forEach(async (post) => {
         if (post.end_date <= new Date()) {
           await Post.findByIdAndUpdate(post._id, { active: false });
