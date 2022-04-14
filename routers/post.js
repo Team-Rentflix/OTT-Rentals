@@ -34,7 +34,7 @@ router.get(
           await Post.findByIdAndUpdate(post._id, { active: false });
         }
       });
-      setTimeout(next, 1000);
+      next();
     } catch (err) {
       console.log(err);
       res.status(500).send({ status: false, error: err });
