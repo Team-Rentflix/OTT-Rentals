@@ -33,15 +33,19 @@ const Payment = ({ amount, user_id }) => {
             key: 'rzp_test_lCStAJm50TlXds',
             amount: amount * 100,
             theme: {
-                color: "#5EA8DD",
+                color: '#C50707',
+            },
+            handler: async function (response) {
+                console.log(response)
             }
         }
+
         const paymentObject = new window.Razorpay(options);
         paymentObject.open();
     }
 
     return (
-        <button disabled={!currentUser || user_id == localStorage.user_id} onClick={displayRazorpay} className='btn fs-5 px-0'><BsBagCheckFill /><span className='small px-1 fst-italic'>Buy Now</span></button>
+        <button disabled={!currentUser || user_id === localStorage.user_id} onClick={displayRazorpay} className='btn fs-5 px-0'><BsBagCheckFill /><span className='small px-1 fst-italic'>Buy Now</span></button>
     )
 }
 

@@ -11,6 +11,7 @@ const Logout = lazy(() => import('./components/Logout'));
 const Buy = lazy(() => import('./components/Buy/Buy'));
 const Home = lazy(() => import('./components/Home/Home'));
 const Account = lazy(() => import('./components/Account/Account'))
+const Profile = lazy(() => import('./components/Account/Profile'))
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                 <PrivateRoute exact path='/logout' component={Logout} />
                 <PrivateRoute path='/rent-now' component={Buy} />
                 <PrivateRoute path='/account' component={Account} />
+                <PublicRoute path='/profile/:username' component={Profile} />
                 <Route>
                   <Redirect to='/home' />
                 </Route>

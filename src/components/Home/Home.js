@@ -28,7 +28,7 @@ const Home = () => {
             </Helmet>
             {currentUser ? <PrivateHome /> : <PublicHome />}
             <div className='row mt-5 justify-content-center'>
-                {posts && posts.map((post,index) => <PostCard key={post._id + index} post={post}/>)}
+                {posts && posts.map((post,index) => <PostCard getUserData={getPosts} key={post._id + index} post={post} classes='col-md-4'/>)}
             </div>
         </>
     )

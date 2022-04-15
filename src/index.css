@@ -3,6 +3,7 @@
 :root{
   --bg-color: #1c1c25 !important;
   --bg-ottred:linear-gradient(to bottom right, #dc3545, #C50707) !important;
+  --bg-rf_red : #C50707
 }
 
 .font-bebas{
@@ -43,23 +44,30 @@ textarea{
   height: auto !important;
 }
 
+.overflow_hide::-webkit-scrollbar{
+  display: none;
+}
+
 ::-webkit-scrollbar-track
 {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
+    width: 8px;
+    background: #000;
 }
 ::-webkit-scrollbar
 {
-    width: 7px;
-    height: 6px;
-	background-color: #F5F5F5;
+  width: 8px;
 }
 ::-webkit-scrollbar-thumb
 {
-    border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: grey;
+  -webkit-border-radius: 10px;
+  opacity: 1;
+  width: 8px;
+  background: var(--bg-rf_red);
+}
+
+.form-check-input:checked{
+  background-color: var(--bg-rf_red) !important;
+  border-color: var(--bg-rf_red) !important;
 }
 
 @media screen and (max-width: 805px)

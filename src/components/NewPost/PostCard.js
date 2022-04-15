@@ -3,7 +3,7 @@ import { BiMenuAltLeft } from 'react-icons/bi'
 import { Collapse } from 'react-bootstrap'
 import Payment from '../Payment'
 import CardHeader from './CardHeader'
-const PostCard = ({ post }) => {
+const PostCard = ({ post, classes, getUserData }) => {
     const [open, setOpen] = useState(false)
     const [amount, setAmount] = useState(0)
     useEffect(() => {
@@ -20,12 +20,12 @@ const PostCard = ({ post }) => {
         setAmount(amt)
     }, [])
     return (
-        <div className='col-12 col-md-4 p-2 fst-italic'>
+        <div className={`col-12 ${classes} p-2 fst-italic`}>
             <div className='bg-white text-dark rounded-3 shadow-sm py-2 px-3'>
-                <CardHeader user_id={post.user_id} user_data={post.user_data} />
+                <CardHeader getUserData={getUserData} post_id={post._id} user_id={post.user_id} user_data={post.user_data} active={post.active} />
                 <div className='d-flex align-items-center'>
                     <p className='fw-bold text-warning text-uppercase fs-3 mb-2'>{post.subscription_type}</p>
-                    <p className='bg-success h-100 ms-3 rounded-pill py-1 px-3 text-light fw-bold mb-2'>OPEN</p>
+                    <p className={`bg-${post.active?'success':'danger'} h-100 ms-3 rounded-pill py-1 px-3 text-light fw-bold mb-2`}>{post.active?"OPEN":"CLOSED"}</p>
                 </div>
                 <div className='row'>
                     <div className='col-6 mb-1'>

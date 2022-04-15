@@ -92,9 +92,9 @@ const LoginForm = () => {
                         <div className="right-face">
                             <p className='font-bebas display-3'>Register</p>
                             <form id="login-form" onSubmit={(e) => RegistrationFunc(e)}>
-                                <input type="text" className="input-field" placeholder="User Name" name='username' required />
+                                <input type="text" className="input-field" placeholder="User Name" name='name' required />
                                 <input type="email" className="input-field" placeholder="Email" name='email' required />
-                                <input type="tel" className="input-field" placeholder="Phone Number" pattern="[0-9]{10}" name='phonenumber' required />
+                                <input type="tel" className="input-field" placeholder="Phone Number" pattern="[0-9]{10}" name='phoneNumber' required />
                                 <input type="password" className="input-field" placeholder="Enter Password" name='password' required />
                                 <input type="password" className="input-field" placeholder="Enter Password Again" ref={rePass} required />
                                 <input type="checkbox" name="reg-checkbox" id="reg-checkbox" className="check-box" required /><label

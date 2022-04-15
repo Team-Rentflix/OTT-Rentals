@@ -60,7 +60,7 @@ const NewPost = () => {
                                 <div className='form-floating'>
                                     <select className="form-select" id='subscription-type' name="subscription_type">
                                         <option value="booknow">Book Now</option>
-                                        <option value="prebook">Pre-Book</option>
+                                        <option disabled={true} value="prebook">Pre-Book(Coming soon)</option>
                                     </select>
                                     <label>Subsciption Type</label>
                                 </div>
