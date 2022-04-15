@@ -3,12 +3,13 @@ const router = new express.Router();
 const auth = require("../libs/auth");
 
 const User = require("../models/user.model");
+const Post = require('../models/post.model')
 
 router.get("/api/profile/:username", async (req, res) => {
   try {
     let user = await User.findOne({ name: req.params.username });
-
-    res.send({ status: true, user: user });
+    let posts = await Post.find({ user_id: user._id })
+    res.send({ status: true, user: { user, posts } });
   } catch (err) {
     console.log(err);
 
