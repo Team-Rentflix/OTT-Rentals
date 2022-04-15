@@ -91,6 +91,7 @@ router
       let post = await Post.findById(req.params.id);
       if (post.user_id == res.locals.user._id) {
         await Post.findByIdAndUpdate(req.params.id, req.body);
+        return res.send({ status: true })
       }
 
       res.send({ status: false, error: "Not authorized" });
