@@ -51,6 +51,7 @@ router.get(
             user_data: {
               name: user_data.name,
               phoneNumber: user_data.phoneNumber,
+              email: user_data.email
             },
           };
         })
@@ -69,15 +70,14 @@ router
     try {
       let post = await Post.findById(req.params.id);
       let user_data = await User.findById(post.user_id);
-      let new_post = [
-        {
-          ...post._doc,
-          user_data: {
-            name: user_data.name,
-            phoneNumber: user_data.phoneNumber,
-          },
+      let new_post = {
+        ...post._doc,
+        user_data: {
+          name: user_data.name,
+          phoneNumber: user_data.phoneNumber,
+          email: user_data.email
         },
-      ];
+      };
 
       res.send({ status: true, post: new_post });
     } catch (err) {
