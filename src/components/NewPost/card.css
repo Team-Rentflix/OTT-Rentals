@@ -1,0 +1,7 @@
+.header-icons > a{
+    transition: all 0.3s ease-in-out;
+}
+
+.header-icons > a:hover{
+    transform: translateY(-2px);
+}

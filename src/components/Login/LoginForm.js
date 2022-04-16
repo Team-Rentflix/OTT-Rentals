@@ -49,7 +49,7 @@ const LoginForm = () => {
             front.current.style.transform = "rotateY(0deg)";
         }
         else {
-            messageBox.current.innerHTML = `${data.error} already exist`
+            messageBox.current.innerHTML = `${JSON.stringify(data.error.keyValue)} already exist`
             setTimeout(() => messageBox.current.innerHTML = '', 3000);
         }
     }

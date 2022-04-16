@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato&display=swap');
 
-:root{
+:root {
   --bg-color: #1c1c25 !important;
-  --bg-ottred:linear-gradient(to bottom right, #dc3545, #C50707) !important;
-  --bg-rf_red : #C50707
+  --bg-ottred: linear-gradient(to bottom right, #dc3545, #C50707) !important;
+  --bg-rf_red: #C50707
 }
 
-.font-bebas{
+.font-bebas {
   font-family: 'Bebas Neue', cursive !important;
   font-family: 'Lato', sans-serif;
   letter-spacing: 10px;
 }
 
-.bg-rfred{
+.bg-rfred {
   background-color: var(--bg-ottred) !important;
 }
 
@@ -26,11 +26,20 @@ body {
   background-color: #1c1c25 !important;
 }
 
-.bg-ordark{
+.bg-ordark {
   background-color: var(--bg-color);
 }
 
-a{
+.letter-spacing-2 {
+  letter-spacing: 2px;
+}
+
+.flex-gap-1 {
+  display: flex;
+  gap: 10px
+}
+
+a {
   color: #fff !important;
   text-decoration: none !important;
 }
@@ -40,39 +49,37 @@ code {
     monospace;
 }
 
-textarea{
+textarea {
   height: auto !important;
 }
 
-.overflow_hide::-webkit-scrollbar{
+.overflow_hide::-webkit-scrollbar {
   display: none;
 }
 
-::-webkit-scrollbar-track
-{
-    width: 8px;
-    background: #000;
+::-webkit-scrollbar-track {
+  width: 8px;
+  background: #000;
 }
-::-webkit-scrollbar
-{
+
+::-webkit-scrollbar {
   width: 8px;
 }
-::-webkit-scrollbar-thumb
-{
+
+::-webkit-scrollbar-thumb {
   -webkit-border-radius: 10px;
   opacity: 1;
   width: 8px;
   background: var(--bg-rf_red);
 }
 
-.form-check-input:checked{
+.form-check-input:checked {
   background-color: var(--bg-rf_red) !important;
   border-color: var(--bg-rf_red) !important;
 }
 
-@media screen and (max-width: 805px)
-{
-  #rentflix-logo{
+@media screen and (max-width: 805px) {
+  #rentflix-logo {
     height: 70px !important;
   }
 }

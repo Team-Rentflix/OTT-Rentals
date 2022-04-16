@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import { BsThreeDotsVertical } from 'react-icons/bs'
+import React, { useState, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import { Form } from 'react-bootstrap'
 import APICall from '../APICall'
+
+const HeaderOffcanvas = React.lazy(() => import('./HeaderOffcanvas'))
 
 const CardHeader = ({ user_id, user_data, active, getUserData, post_id }) => {
     const [disable, setDisable] = useState(false)
@@ -24,7 +25,7 @@ const CardHeader = ({ user_id, user_data, active, getUserData, post_id }) => {
             </Link>
             <div className='ms-auto d-flex align-items-center'>
                 {user_id === localStorage.user_id && <Form.Check disabled={disable} onClick={ToggleActive} defaultChecked={active} type="switch" />}
-                <button className='btn pe-0'><BsThreeDotsVertical /></button>
+                <Suspense fallback={<>Loading...</>}><HeaderOffcanvas user_data={user_data} getUserData={getUserData} post_id={post_id} user_id={user_id}/></Suspense>
             </div>
         </div>
     )

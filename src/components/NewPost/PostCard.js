@@ -3,6 +3,7 @@ import { BiMenuAltLeft } from 'react-icons/bi'
 import { Collapse } from 'react-bootstrap'
 import Payment from '../Payment'
 import CardHeader from './CardHeader'
+import './card.css'
 const PostCard = ({ post, classes, getUserData }) => {
     const [open, setOpen] = useState(false)
     const [amount, setAmount] = useState(0)
