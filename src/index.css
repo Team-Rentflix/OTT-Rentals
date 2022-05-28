@@ -4,7 +4,8 @@
   --bg-color: #1c1c25 !important;
   --bg-rfgradient: linear-gradient(to bottom right, #74279e, #c11fd8) !important;
   --bg-rf: #210458;
-  --slider-color: #c50707
+  --btn-bg: #c11fd8;
+  --slider-color: #c50707;
 }
 
 .font-bebas {
@@ -19,12 +20,12 @@
 
 .btn-v1 {
   /* background: var(--bg-rfgradient); */
-  border: 2px solid var(--bg-rf) !important;
-  color: var(--bg-rf) !important;
+  border: 2px solid var(--btn-bg) !important;
+  color: var(--btn-bg) !important;
 }
 
 .btn-v1:hover {
-  background: var(--bg-rf);
+  background: var(--btn-bg);
   color: #fff !important;
 }
 
