@@ -2,6 +2,11 @@ nav ul li{
     list-style: none;
 }
 
+#rentflix-logo{
+    position: relative;
+    left: -20px;
+}
+
 nav ul li .nav-icons{
     width: 35px;
     height: inherit;

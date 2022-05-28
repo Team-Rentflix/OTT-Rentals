@@ -104,13 +104,13 @@ const NewPost = () => {
                                     <label>Description</label>
                                 </div>
                             </div>
-                            <div className='text-danger small fst-italic'>
+                            <div className='text-light small fst-italic'>
                                 <p className='mb-1'>* End Date - Your offer will expire on this date</p>
                                 <p>* Total Amount - This amount can vary depending on which day your offer is claimed</p>
                             </div>
                             <div className="col-md-12 m-0 p-2">
                                 <p ref={msg} className='text-danger text-capitalize'></p>
-                                <button type="submit" className="btn btn-lg btn-danger text-light shadow-lg px-0 w-100 rounded-3 fw-bold">POST NOW</button>
+                                <button type="submit" className="btn btn-lg btn-v1 shadow-lg px-0 w-100 rounded-0 fw-bold">POST NOW</button>
                             </div>
                         </div>
                     </Form>

@@ -33,12 +33,12 @@ const HeaderOffcanvas = ({ user_data, getUserData, post_id, user_id }) => {
 
     return (
         <>
-            <button onClick={handleShow} className='btn pe-0'><BsThreeDotsVertical /></button>
+            <button onClick={handleShow} className='btn pe-0'><BsThreeDotsVertical className='text-white'/></button>
             <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Body>
-                    <div className='d-flex flex-column '>
+                    <div className='d-flex flex-column'>
                         {user_id === localStorage.user_id && <button onClick={DeletePost} className='btn border-bottom fw-bold text-danger'>Delete</button>}
-                        <button onClick={handleClose} className='btn border-bottom'>Cancel</button>
+                        <button onClick={handleClose} className='btn border-bottom text-light'>Cancel</button>
                     </div>
                     <div className='mt-4'>
                         <h4 className='text-secondary text-uppercase letter-spacing-2'>Contact</h4>

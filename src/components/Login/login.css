@@ -31,9 +31,9 @@
     height: 100%;
     box-shadow: 0 15px 35px rgb(0, 0, 0,0.5);
     border-radius: 15px;
-    /* background: rgba(255, 255, 255, 0.05) !important; */
+    /* background: rgba(255, 255, 255, 0.5) !important; */
     /* background: rgba(0, 0, 0, 0.438); */
-    /* backdrop-filter: blur(10px) !important; */
+    /* backdrop-filter: blur(5px) !important; */
     transform-style: preserve-3d;
     transition: 1s;
     color: #fff;
@@ -53,6 +53,7 @@
     padding: 0 10px;
     margin: 10px 0;
     z-index: 5;
+    /* backface-visibility: hidden !important; */
 }
 .back
 {

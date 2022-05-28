@@ -22,7 +22,7 @@ const PostCard = ({ post, classes, getUserData }) => {
     }, [])
     return (
         <div className={`col-12 ${classes} p-2 fst-italic`}>
-            <div className='bg-white text-dark rounded-3 shadow-sm py-2 px-3'>
+            <div className='glassmorphism text-light rounded-3 shadow-sm py-2 px-3'>
                 <CardHeader getUserData={getUserData} post_id={post._id} user_id={post.user_id} user_data={post.user_data} active={post.active} />
                 <div className='d-flex align-items-center'>
                     <p className='fw-bold text-warning text-uppercase fs-3 mb-2'>{post.subscription_type}</p>
@@ -46,7 +46,7 @@ const PostCard = ({ post, classes, getUserData }) => {
                     </div>
                 </div>
                 <div className='d-flex justify-content-between align-items-center'>
-                    <button onClick={() => setOpen(!open)} aria-expanded={open} className='btn fs-5 px-0'><BiMenuAltLeft /><span className='small px-1 fst-italic'>Details</span></button>
+                    <button onClick={() => setOpen(!open)} aria-expanded={open} className='btn fs-5 px-0'><BiMenuAltLeft className='text-light'/><span className='small px-1 fst-italic text-light'>Details</span></button>
                     <Payment amount={amount} user_id={post.user_id} />
                 </div>
                 <Collapse in={open}>

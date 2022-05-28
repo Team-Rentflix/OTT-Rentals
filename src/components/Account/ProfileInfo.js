@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { bgColor } from '../../utils/constant'
 
 const ProfileInfo = ({ userData }) => {
 
@@ -15,10 +16,11 @@ const ProfileInfo = ({ userData }) => {
     }, [userData]);
 
     return (
-        <div className='col-md-4'>
-            <div className='d-flex justify-content-center'>
-                <img src={`https://ui-avatars.com/api/?name=${name}&size=200&background=C50707&color=fff`} className='rounded-circle' alt='user_image' />
+        <div className='col-md-4 text-light'>
+            <div className='d-flex justify-content-md-start justify-content-center'>
+                <img src={`https://ui-avatars.com/api/?name=${name}&size=200&background=${bgColor}&color=fff`} className='rounded-circle' alt='user_image' />
             </div>
+            <h2 className='text-capitalize text-center text-md-start'>{name}</h2>
         </div>
     )
 }

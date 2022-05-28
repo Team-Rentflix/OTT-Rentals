@@ -4,9 +4,14 @@ import { AuthContext } from '../Auth'
 import './home.css'
 import PostCard from '../NewPost/PostCard'
 import APICall from '../APICall'
+import { Carousel } from 'react-bootstrap'
+import { CarouselList } from './CarouselList'
 
 const PrivateHome = lazy(() => import('./PrivateHome'));
 const PublicHome = lazy(() => import('./PublicHome'));
+
+
+
 
 const Home = () => {
 
@@ -26,10 +31,20 @@ const Home = () => {
             <Helmet>
                 <title>RentFlix - Home</title>
             </Helmet>
-            {currentUser ? <PrivateHome /> : <PublicHome />}
-            <div className='row mt-5 justify-content-center'>
-                {posts && posts.map((post,index) => <PostCard getUserData={getPosts} key={post._id + index} post={post} classes='col-md-4'/>)}
+            <div className='container text-light'>
+                <Carousel className='my-4'>
+                    {CarouselList && CarouselList.map((list, index) => <Carousel.Item key={list + index} interval={2000}>
+                        <div className='d-flex'>
+                            <img src={list} alt='' className='img-fluid home-carousel-img mx-auto' />
+                        </div>
+                    </Carousel.Item>)}
+                </Carousel>
+                {currentUser ? <PrivateHome /> : <PublicHome />}
+                <div className='row mt-5 justify-content-center'>
+                    {posts && posts.map((post, index) => <PostCard getUserData={getPosts} key={post._id + index} post={post} classes='col-md-4' />)}
+                </div>
             </div>
+
         </>
     )
 }

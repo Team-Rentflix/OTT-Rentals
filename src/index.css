@@ -2,8 +2,9 @@
 
 :root {
   --bg-color: #1c1c25 !important;
-  --bg-ottred: linear-gradient(to bottom right, #dc3545, #C50707) !important;
-  --bg-rf_red: #C50707
+  --bg-rfgradient: linear-gradient(to bottom right, #74279e, #c11fd8) !important;
+  --bg-rf: #210458;
+  --slider-color: #c50707
 }
 
 .font-bebas {
@@ -13,7 +14,18 @@
 }
 
 .bg-rfred {
-  background-color: var(--bg-ottred) !important;
+  background-color: var(--bg-rfgradient) !important;
+}
+
+.btn-v1 {
+  /* background: var(--bg-rfgradient); */
+  border: 2px solid var(--bg-rf) !important;
+  color: var(--bg-rf) !important;
+}
+
+.btn-v1:hover {
+  background: var(--bg-rf);
+  color: #fff !important;
 }
 
 body {
@@ -24,6 +36,32 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #1c1c25 !important;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-image: url('https://www.hulu.com/static/hitch/s3/attachments/ckzoylttk003x1v6mcd4p0gk2-ckxgnvin29r771v5fyutjbf5c-bundle-6400x2640-desktop-1x.jpg');
+  background-size: cover;
+  background-position: center center;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  background-image: linear-gradient(to top, rgba(0, 0, 0, .5) 0, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, .5) 100%);
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 .bg-ordark {
@@ -70,12 +108,12 @@ textarea {
   -webkit-border-radius: 10px;
   opacity: 1;
   width: 8px;
-  background: var(--bg-rf_red);
+  background: var(--slider-color);
 }
 
 .form-check-input:checked {
-  background-color: var(--bg-rf_red) !important;
-  border-color: var(--bg-rf_red) !important;
+  background-color: var(--bg-rf) !important;
+  border-color: var(--bg-rf) !important;
 }
 
 @media screen and (max-width: 805px) {

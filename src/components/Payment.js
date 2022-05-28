@@ -45,7 +45,7 @@ const Payment = ({ amount, user_id }) => {
     }
 
     return (
-        <button disabled={!currentUser || user_id === localStorage.user_id} onClick={displayRazorpay} className='btn fs-5 px-0'><BsBagCheckFill /><span className='small px-1 fst-italic'>Buy Now</span></button>
+        <button disabled={!currentUser || user_id === localStorage.user_id} onClick={displayRazorpay} className='btn fs-5 px-0'><BsBagCheckFill className='text-light'/><span className='small px-1 fst-italic text-light'>Buy Now</span></button>
     )
 }
 
