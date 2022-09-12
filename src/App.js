@@ -13,6 +13,7 @@ const Home = lazy(() => import('./components/Home/Home'));
 const Account = lazy(() => import('./components/Account/Account'))
 const Profile = lazy(() => import('./components/Account/Profile'))
 const Post = lazy(() => import('./components/NewPost/Post'))
+// const Chatbot = lazy(() => import('./components/Chatbot/Chatbot'))
 
 function App() {
   return (
