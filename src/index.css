@@ -41,8 +41,9 @@ body {
   left: 0;
   bottom: 0;
   background-image: url('https://www.hulu.com/static/hitch/s3/attachments/ckzoylttk003x1v6mcd4p0gk2-ckxgnvin29r771v5fyutjbf5c-bundle-6400x2640-desktop-1x.jpg');
-  background-size: cover;
+  background-size: contain;
   background-position: center center;
+  background-repeat: repeat;
   height: 100%;
   width: 100%;
   z-index: -2;

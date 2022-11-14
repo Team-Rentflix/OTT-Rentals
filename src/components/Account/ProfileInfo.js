@@ -24,7 +24,7 @@ const ProfileInfo = ({ userData, navlist }) => {
             </div>
             <h2 className='text-capitalize text-center text-md-start'>{name}</h2>
 
-            <div className='mt-2 col-10' style={{ backgroundColor: '#393E46' }}>
+            <div className='mt-4 mx-auto mx-md-0 col-10 rounded-3' style={{ backgroundColor: '#393E46' }}>
                 <ListGroup style={{ background: 'none' }}>
                     {navlist && navlist.map((list, index) => <Link to={list.link} key={list.title + index}><ListGroup.Item style={{ background: 'none' }} className='text-light'>
                         {list.title}

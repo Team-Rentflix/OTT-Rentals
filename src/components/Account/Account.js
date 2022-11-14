@@ -8,7 +8,7 @@ const ContentSection = lazy(() => import('./ContentSection'))
 const Account = () => {
 
     const [userData, setUserData] = useState(null);
-    const navlist = [{ title: "Posts", link: 'posts' }]
+    const navlist = [{ title: "Posts", link: 'posts' },{title:'Purchases',link:'purchases'}]
 
     const getUserData = async () => {
         const data = await APICall('/api/account', 'GET');
@@ -29,7 +29,7 @@ const Account = () => {
             <div className='row'>
                 <Suspense fallback={<>Loading...</>}>
                     <ProfileInfo userData={userData?.user} isAccount={true} navlist={navlist}/>
-                    <ContentSection getUserData={getUserData} posts={userData?.posts} user_data={userData?.user} />
+                    <ContentSection getUserData={getUserData} userData={userData} />
                 </Suspense>
             </div>
         </>

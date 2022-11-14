@@ -31,7 +31,7 @@ const Profile = () => {
             <div className='row'>
                 <Suspense fallback={<>Loading...</>}>
                     <ProfileInfo userData={userData?.user} navlist={navlist}/>
-                    <ContentSection getUserData={getUserData} posts={userData?.posts} user_data={userData?.user} />
+                    <ContentSection getUserData={getUserData} userData={userData} />
                 </Suspense>
             </div>
         </>
