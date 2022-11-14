@@ -14,6 +14,6 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-serviceWorkerRegistration.register();
+// serviceWorkerRegistration.register();
 
 reportWebVitals();
