@@ -8,10 +8,10 @@ const ContentSection = lazy(() => import('./ContentSection'))
 const Account = () => {
 
     const [userData, setUserData] = useState(null);
-
+    const navlist = [{ title: "Posts", link: 'posts' }]
 
     const getUserData = async () => {
-        const data = await APICall(`/api/profile/${localStorage.username}`, 'GET');
+        const data = await APICall('/api/account', 'GET');
         if (data.status) {
             setUserData(data.user)
         }
@@ -28,7 +28,7 @@ const Account = () => {
             </Helmet>
             <div className='row'>
                 <Suspense fallback={<>Loading...</>}>
-                    <ProfileInfo userData={userData?.user} />
+                    <ProfileInfo userData={userData?.user} isAccount={true} navlist={navlist}/>
                     <ContentSection getUserData={getUserData} posts={userData?.posts} user_data={userData?.user} />
                 </Suspense>
             </div>

@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato&display=swap');
 
 :root {
-  --bg-color: #1c1c25 !important;
+  --bg-color: #222831 !important;
   --bg-rfgradient: linear-gradient(to bottom right, #74279e, #c11fd8) !important;
   --bg-rf: #210458;
-  --btn-bg: #c11fd8;
+  --btn-bg: #00ADB5;
   --slider-color: #c50707;
 }
 
@@ -36,12 +36,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #1c1c25 !important;
-}
-
-body::before {
-  content: '';
-  position: fixed;
+  background-color: var(--bg-color);
   top: 0;
   left: 0;
   bottom: 0;
@@ -51,6 +46,7 @@ body::before {
   height: 100%;
   width: 100%;
   z-index: -2;
+  color: #EEEEEE;
 }
 
 body::after {

@@ -8,6 +8,7 @@ const ContentSection = lazy(() => import('./ContentSection'))
 
 const Profile = () => {
     const { username } = useParams()
+    const navlist = [{ title: "Posts", link: 'posts' }]
 
     const [userData, setUserData] = useState(null);
     
@@ -29,7 +30,7 @@ const Profile = () => {
             </Helmet>
             <div className='row'>
                 <Suspense fallback={<>Loading...</>}>
-                    <ProfileInfo userData={userData?.user} />
+                    <ProfileInfo userData={userData?.user} navlist={navlist}/>
                     <ContentSection getUserData={getUserData} posts={userData?.posts} user_data={userData?.user} />
                 </Suspense>
             </div>
