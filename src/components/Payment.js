@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import { BsBagCheckFill } from 'react-icons/bs'
 import { AuthContext } from './Auth'
+import APICall from './APICall'
 
-const Payment = ({ amount, user_id }) => {
+const Payment = ({ amount, user_id,post_id }) => {
 
     const { currentUser } = useContext(AuthContext)
 
@@ -36,7 +37,13 @@ const Payment = ({ amount, user_id }) => {
                 color: '#C50707',
             },
             handler: async function (response) {
-                console.log(response)
+                // console.log(response);
+                const data = await APICall('/transaction/transaction-success','POST',{
+                    sender_id : localStorage.user_id,
+                    reciever_id : user_id,
+                    post_id: post_id,
+                    razorpay_payment_id: response.razorpay_payment_id
+                })
             }
         }
 

@@ -47,7 +47,7 @@ const PostCard = ({ post, classes, getUserData }) => {
                 </div>
                 <div className='d-flex justify-content-between align-items-center'>
                     <button onClick={() => setOpen(!open)} aria-expanded={open} className='btn fs-5 px-0'><BiMenuAltLeft className='text-light'/><span className='small px-1 fst-italic text-light'>Details</span></button>
-                    <Payment amount={amount} user_id={post.user_id} />
+                    <Payment amount={amount} user_id={post.user_id} post_id={post._id} />
                 </div>
                 <Collapse in={open}>
                     <div>

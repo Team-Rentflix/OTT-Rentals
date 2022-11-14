@@ -117,6 +117,29 @@ textarea {
   border-color: var(--bg-rf) !important;
 }
 
+.head-underline{
+  display: inline;
+}
+
+.head-underline::before{
+  position: absolute;
+  content: '';
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  animation: underline-animate 1s linear forwards;
+}
+
+@keyframes underline-animate {
+  from{
+    width: 0%;
+  }to{
+    width: 80%;
+  }
+}
+
 @media screen and (max-width: 805px) {
   #rentflix-logo {
     height: 70px !important;

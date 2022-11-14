@@ -1,5 +1,5 @@
 export default async function APICall(_path, _method, _body) {
-    const serverURL = 'https://rentflix-server.herokuapp.com'
+    const serverURL = 'http://localhost:5000'
     const response = await fetch(serverURL + _path, {
         method: _method,
         headers: {
