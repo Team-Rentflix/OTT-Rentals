@@ -4,6 +4,9 @@ const jwt = require("jsonwebtoken");
 //model
 const User = require("../models/user.model");
 
+const userHlp = require('../helper/userHlp')
+const profileHlp = require('../helper/profileHlp')
+
 require("dotenv").config({ path: "./config.env" });
 
 exports.loginUser = async (req, res) => {
@@ -40,13 +43,25 @@ exports.loginUser = async (req, res) => {
 }
 
 exports.getAccountDetails = async (req, res) => {
-    let user = res.locals.user;
-    return res.json({
-        status: true,
-        name: user.name,
-        email: user.email,
-        phoneNumber: user.phoneNumber
-    });
+    try {
+        let user = res.locals.user;
+        await userHlp.getUserPurchases(user, (err, purchaseDetails) => {
+            if (err) {
+                throw err
+            }
+            user = { user, purchaseDetails }
+        })
+        await profileHlp.getposts(user.user,(err,posts) => {
+            if(err) throw err
+            user = {...user, posts}
+        })
+        return res.send({
+            status: true,
+            user: user
+        })
+    } catch (err) {
+        res.status(500).send({ status: false, error: err })
+    }
 }
 
 exports.createNewAccount = async (req, res) => {
