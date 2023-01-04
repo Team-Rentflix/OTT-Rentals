@@ -62,7 +62,7 @@ const NewPost = () => {
                 <div className='col-md-6 pe-md-4 p-4'>
                     <Form onSubmit={(e) => { NewPostFunc(e) }}>
                         <div className='row py-3'>
-                            <div className='col-md-4 m-0 p-2'>
+                            <div className='col-md-8 m-0 p-2'>
                                 <div className="form-floating">
                                     <select name="platform" className="form-select" onChange={e => setAccount(e.target.value)}>
                                         {platformList.map((val, index) => <option value={val.replace(/ /g, "")} key={val + index}>{val}</option>)}
@@ -85,31 +85,28 @@ const NewPost = () => {
                                     <label>Amount/Day(in ₹)</label>
                                 </div>
                             </div>
-                            <div className="col-md-4 m-0 p-1">
-                                <div className="row mx-auto">
-                                    <div className="col m-0 p-1">
-                                        <div className="form-floating">
-                                            <input onChange={e => UpdateAmount(e.target.value)} name="time_period" id='time_period' type="number" min="1" max='15' className="form-control" placeholder="Time Period" />
-                                            <label>Time Period(In Days)</label>
-                                        </div>
-                                    </div>
+                            <div className="col m-0 p-2">
+                                <div className="form-floating">
+                                    <input onChange={e => UpdateAmount(e.target.value)} name="time_period" id='time_period' type="number" min="1" max='15' className="form-control" placeholder="Time Period" />
+                                    <label>Time Period(In Days)</label>
                                 </div>
                             </div>
-                            <div className="col-md-8 m-0 p-1">
-                                <div className="row mx-auto">
-                                    <div className="col m-0 p-1 pe-2">
-                                        <div className='form-floating'>
-                                            <input type='date' name='end_date' className='form-control' />
-                                            <label>End Date</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="col m-0 p-1 ps-2">
-                                        <div className="form-floating">
-                                            <input ref={AmountRef} type="number" min="0" className="form-control" placeholder="Total Amount" />
-                                            <label>Total Amount</label>
-                                        </div>
-                                    </div>
+                            <div className="col-md-4 m-0 p-2">
+                                <div className='form-floating'>
+                                    <input type='date' name='end_date' className='form-control' />
+                                    <label>End Date</label>
+                                </div>
+                            </div>
+                            <div className="col-md-4 m-0 p-2">
+                                <div className="form-floating">
+                                    <input ref={AmountRef} type="number" min="0" className="form-control" placeholder="Total Amount" />
+                                    <label>Total Amount</label>
+                                </div>
+                            </div>
+                            <div className='col-md-8 p-2 m-0'>
+                                <div className='form-floating'>
+                                    <input name='acc_id' className='form-control' />
+                                    <label>{account} ID</label>
                                 </div>
                             </div>
                             <div className='col-md-4 p-2 m-0'>
@@ -150,7 +147,7 @@ const NewPost = () => {
                 <div className='col-md-6'>
                     <img alt='' src={VideoGamesSvg} className='img-fluid' />
                 </div>
-            </div >
+            </div>
         </>
     )
 }

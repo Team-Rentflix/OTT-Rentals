@@ -1,10 +1,13 @@
 import APICall from "../APICall"
+import { useState } from "react"
 
 const Purchases = ({ purchases }) => {
+    const [accountID,setAccountID] = useState(null)
     const getPassword = async (_id, post_id) => {
         const password = await APICall(`/transaction/getPass/?_id=${_id}&post_id=${post_id}`, 'GET')
         if (password.status) {
             navigator.clipboard.writeText(password.password).then(() => window.alert('Password Copied to Clipboard')).catch(err => console.log(err))
+            setAccountID(password.acc_id)
         }
     }
     return (
@@ -18,6 +21,8 @@ const Purchases = ({ purchases }) => {
                         <div className="col-6">{purchase.sender_id}</div>
                         <div className="col-6 fw-bold">Reciever ID</div>
                         <div className="col-6">{purchase.reciever_id}</div>
+                        {accountID && <><div className="col-6 fw-bold">Account ID</div>
+                        <div className="col-6">{accountID}</div></>}
                     </div>
                     <div className="d-flex justify-content-center my-2">
                         <button className="btn-v1 btn shadow-lg" onClick={() => getPassword(purchase._id, purchase.post_id)}>Get Password</button>
