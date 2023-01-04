@@ -24,7 +24,7 @@ exports.decryptPassword = async (req, res) => {
             const {secret_key} = jwt.decode(post.secret_key)
             if(jwt.verify(post.acc_pass,secret_key)){
                 const {acc_pass} = jwt.decode(post.acc_pass)
-                res.send({status:true, password: acc_pass})
+                res.send({status:true, password: acc_pass,acc_id: post.acc_id})
             }else{
                 throw "Secret Key Invalid"
             }

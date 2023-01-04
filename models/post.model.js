@@ -11,7 +11,8 @@ const post = new mongoose.Schema(
     user_id: { type: String },
     active: { type: Boolean },
     acc_pass: { type: String, required: true },
-    secret_key: { type: String, required: true }
+    secret_key: { type: String, required: true },
+    acc_id: { type: String, required: true }
   },
   { timestamps: true }
 );
