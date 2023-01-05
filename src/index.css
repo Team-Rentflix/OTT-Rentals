@@ -50,6 +50,10 @@ body {
   color: #EEEEEE;
 }
 
+label{
+  color: #000 !important;
+}
+
 body::after {
   content: '';
   position: fixed;
