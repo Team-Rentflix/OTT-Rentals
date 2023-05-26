@@ -121,12 +121,12 @@ const NewPost = () => {
                                     <label>Confirm Password</label>
                                 </div>
                             </div>
-                            <div className='col-md-4 p-2 m-0'>
+                            {/* <div className='col-md-4 p-2 m-0'>
                                 <div className='form-floating'>
                                     <input type='text' name='secret_key' className='form-control' />
                                     <label>Custom Secret Key</label>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="col-md-12 m-0 p-2">
                                 <div className="form-floating">
                                     <textarea maxLength="1000" name="description" rows='4' className="form-control"></textarea>
