@@ -1,7 +1,8 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import SecureLogin from '../Images/SecureLogin.svg'
 import TwoFactorAuthentication from '../Images/TwoFactorAuthentication.svg'
 import APICall from '../APICall'
+import { AuthContext } from '../Auth'
 
 const LoginForm = () => {
     const front = useRef();
@@ -9,6 +10,7 @@ const LoginForm = () => {
     const rePass = useRef();
     const messageBox = useRef();
     const messageBox1 = useRef();
+    const { setCurrentUser } = useContext(AuthContext)
 
 
     const LoginFunc = async (e) => {
@@ -24,7 +26,7 @@ const LoginForm = () => {
             localStorage.token = data.user;
             localStorage.username = data.username;
             localStorage.user_id = data.user_id
-            window.location.reload()
+            setCurrentUser(true)
         }
         else {
             messageBox1.current.innerHTML = data.error;

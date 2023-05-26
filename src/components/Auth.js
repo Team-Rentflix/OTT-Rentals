@@ -41,11 +41,14 @@ export const AuthProvider = ({ children }) => {
     </div>
   }
 
+  const values = {
+    currentUser,
+    setCurrentUser
+  }
+
   return (
     <AuthContext.Provider
-      value={{
-        currentUser
-      }}
+      value={values}
     >
       {children}
     </AuthContext.Provider>
