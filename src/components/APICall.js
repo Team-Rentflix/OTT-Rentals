@@ -1,5 +1,5 @@
 export default async function APICall(_path, _method, _body) {
-    const ROOT_URL = 'https://rentflix-backend.vercel.app/'
+    const ROOT_URL = 'https://rentflix-backend.vercel.app'
     // const ROOT_URL = 'http://localhost:5000'
     const response = await fetch(ROOT_URL + _path, {
         method: _method,
